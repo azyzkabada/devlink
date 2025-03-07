@@ -1,27 +1,42 @@
-import { useTheme } from "next-themes";
-import { Button } from "../ui/button";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { Button } from '../ui/button';
 
-export const ToggleTheme = () => {
+export const ToggleTheme = ({ className = '' }) => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // Prevents hydration mismatch in Next.js
+
   return (
     <Button
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      size="sm"
+      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      size="lg"
       variant="ghost"
-      className="w-full justify-start"
+      className={`relative px-4 transition-all duration-300 flex items-center gap-2 ${className}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="flex gap-2 dark:hidden">
-        <Moon className="size-5" />
-        <span className="block lg:hidden"> Escuro </span>
-      </div>
-
-      <div className="dark:flex gap-2 hidden">
-        <Sun className="size-5" />
-        <span className="block lg:hidden">Claro</span>
-      </div>
-
-      <span className="sr-only">Trocar de tema</span>
+      {/* Show Sun when Dark Mode is Active */}
+      {theme === 'dark' ? (
+        !isHovered ? (
+          <Moon className="size-5  transition-transform duration-300 scale-110" />
+        ) : (
+          <Sun className="size-5  transition-opacity duration-300" />
+        )
+      ) : // Show Moon when Light Mode is Active
+      !isHovered ? (
+        <Sun className="size-5  transition-transform duration-300 scale-110" />
+      ) : (
+        <Moon className="size-5  transition-opacity duration-300" />
+      )}
+      <span className="sr-only">Toggle Theme</span>
     </Button>
   );
 };

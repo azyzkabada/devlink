@@ -1,75 +1,98 @@
-"use client";
+'use client';
 
-import { Icon } from "@/components/ui/icon";
-import { Marquee } from "@devnomic/marquee";
-import "@devnomic/marquee/dist/index.css";
-import { icons } from "lucide-react";
-interface sponsorsProps {
-  icon: string;
+import { Marquee } from '@devnomic/marquee';
+import '@devnomic/marquee/dist/index.css';
+import { useTheme } from 'next-themes';
+import Image from 'next/image';
+
+interface Sponsor {
   name: string;
+  logoLight: string;
+  logoDark: string;
 }
 
-const sponsors: sponsorsProps[] = [
+const sponsors: Sponsor[] = [
   {
-    icon: "Crown",
-    name: "Acmebrand",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Vegan",
-    name: "Acmelogo",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Ghost",
-    name: "Acmesponsor",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Puzzle",
-    name: "Acmeipsum",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Squirrel",
-    name: "Acme",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Cookie",
-    name: "Accmee",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
   {
-    icon: "Drama",
-    name: "Acmetech",
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
+  },
+  {
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
+  },
+  {
+    name: 'LiveChat',
+    logoLight: '/livechat_logo_light.svg',
+    logoDark: '/livechat_logo_dark.svg',
   },
 ];
 
 export const SponsorsSection = () => {
-  return (
-    <section id="sponsors" className="max-w-[75%] mx-auto pb-24 sm:pb-32">
-      <h2 className="text-lg md:text-xl text-center mb-6">
-        Our Platinum Sponsors
-      </h2>
+  const { theme } = useTheme();
 
-      <div className="mx-auto">
-        <Marquee
-          className="gap-[3rem]"
-          fade
-          innerClassName="gap-[3rem]"
-          pauseOnHover
-        >
-          {sponsors.map(({ icon, name }) => (
+  return (
+    <section
+      id="sponsors"
+      className="max-w-[75%] mx-auto pb-24 sm:pb-32 text-center mt-8"
+    >
+      <h2 className="text-lg md:text-xl mb-6">Our Partners</h2>
+      <Marquee
+        className="gap-[3rem]"
+        fade
+        innerClassName="gap-[3rem]"
+        pauseOnHover
+      >
+        {sponsors.map((sponsor) => {
+          const logoSrc =
+            theme === 'dark' ? sponsor.logoLight : sponsor.logoDark;
+          return (
             <div
-              key={name}
-              className="flex items-center text-xl md:text-2xl font-medium"
+              key={sponsor.name}
+              className="flex flex-col items-center justify-center"
             >
-              <Icon
-                name={icon as keyof typeof icons}
-                size={32}
-                color="white"
-                className="mr-2"
+              <Image
+                src={'/partners' + logoSrc}
+                alt={`${sponsor.name} logo`}
+                width={150}
+                height={150}
               />
-              {name}
+              {/* <span className="mt-2 text-xl font-medium">{sponsor.name}</span> */}
             </div>
-          ))}
-        </Marquee>
-      </div>
+          );
+        })}
+      </Marquee>
     </section>
   );
 };

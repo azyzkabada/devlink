@@ -1,84 +1,94 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icon";
-import { icons } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Icon } from '@/components/ui/icon';
+import { icons } from 'lucide-react';
 
-interface FeaturesProps {
+interface ServiceProps {
   icon: string;
   title: string;
   description: string;
 }
 
-const featureList: FeaturesProps[] = [
+const servicesList: ServiceProps[] = [
   {
-    icon: "TabletSmartphone",
-    title: "Mobile Friendly",
+    icon: 'Briefcase',
+    title: 'Brand Strategy',
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam, consectetur.",
+      'We help you define and refine your brand identity to make a lasting impact in your industry.',
   },
   {
-    icon: "BadgeCheck",
-    title: "Social Proof",
+    icon: 'Globe',
+    title: 'Digital Marketing',
     description:
-      "Lorem ipsum dolor sit amet consectetur. Natus consectetur, odio ea accusamus aperiam.",
+      'From SEO to social media campaigns, we craft marketing strategies that drive engagement and growth.',
+  },
+  // {
+  //   icon: 'ShoppingCart',
+  //   title: 'E-commerce Solutions',
+  //   description:
+  //     'We design and optimize online stores that convert visitors into loyal customers.',
+  // },
+  {
+    icon: 'MonitorSmartphone',
+    title: 'Web & Mobile Development',
+    description:
+      'We build high-performance websites and mobile apps tailored to your business needs.',
+  },
+  // {
+  //   icon: 'Palette',
+  //   title: 'Creative Design',
+  //   description:
+  //     'Our design team crafts visually stunning assets to enhance your brand identity and customer experience.',
+  // },
+  {
+    icon: 'Megaphone',
+    title: 'Advertising & Promotion',
+    description:
+      'We create data-driven ad campaigns to maximize reach and ROI across different platforms.',
   },
   {
-    icon: "Goal",
-    title: "Targeted Content",
+    icon: 'Users',
+    title: 'Client Management',
     description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. odio ea accusamus aperiam.",
+      'We provide efficient CRM solutions to streamline communication, enhance customer relationships, and increase retention.',
   },
   {
-    icon: "PictureInPicture",
-    title: "Strong Visuals",
+    icon: 'Headphones',
+    title: 'Live Support',
     description:
-      "Lorem elit. A odio velit cum aliquam. Natus consectetur dolores, odio ea accusamus aperiam.",
-  },
-  {
-    icon: "MousePointerClick",
-    title: "Clear CTA",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing. odio ea accusamus consectetur.",
-  },
-  {
-    icon: "Newspaper",
-    title: "Clear Headline",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. A odio velit cum aliquam. Natus consectetur.",
+      'Our 24/7 live support ensures your customers receive immediate assistance, improving satisfaction and loyalty.',
   },
 ];
 
-export const FeaturesSection = () => {
+export const ServicesSection = () => {
   return (
-    <section id="features" className="container py-24 sm:py-32">
-      <h2 className="text-lg text-primary text-center mb-2 tracking-wider">
-        Features
+    <section id="services" className="container py-24 sm:py-32">
+      <h2 className="text-lg text-primary text-center mb-2 tracking-wider uppercase">
+        Our Services
       </h2>
 
-      <h2 className="text-3xl md:text-4xl text-center font-bold mb-4">
-        What Makes Us Different
+      <h2 className="text-3xl md:text-5xl text-center font-bold mb-6">
+        Tailored Solutions for Your Business Growth
       </h2>
 
-      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-8">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatem
-        fugiat, odit similique quasi sint reiciendis quidem iure veritatis optio
-        facere tenetur.
+      <h3 className="md:w-1/2 mx-auto text-xl text-center text-muted-foreground mb-10">
+        We provide innovative and data-driven services to help your business
+        thrive in a competitive market.
       </h3>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {featureList.map(({ icon, title, description }) => (
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesList.map(({ icon, title, description }) => (
           <div key={title}>
-            <Card className="h-full bg-background border-0 shadow-none">
-              <CardHeader className="flex justify-center items-center">
-                <div className="bg-primary/20 p-2 rounded-full ring-8 ring-primary/10 mb-4">
+            <Card className="h-full bg-background border-0 shadow-lg hover:shadow-xl transition-all">
+              <CardHeader className="flex flex-col items-center text-center">
+                <div className="bg-primary/20 p-3 rounded-full ring-8 ring-primary/10 mb-4">
                   <Icon
                     name={icon as keyof typeof icons}
-                    size={24}
+                    size={28}
                     color="hsl(var(--primary))"
                     className="text-primary"
                   />
                 </div>
-
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="text-xl font-semibold">{title}</CardTitle>
               </CardHeader>
 
               <CardContent className="text-muted-foreground text-center">
